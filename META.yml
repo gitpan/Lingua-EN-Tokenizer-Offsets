@@ -26,4 +26,4 @@ resources:
   bugtracker: https://github.com/andrefs/Lingua-EN-Tokenizer-Offsets/issues
   homepage: https://github.com/andrefs/Lingua-EN-Tokenizer-Offsets
   repository: git://github.com/andrefs/Lingua-EN-Tokenizer-Offsets.git
-version: 0.01_01
+version: 0.01_02

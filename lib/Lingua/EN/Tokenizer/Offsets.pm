@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Lingua::EN::Tokenizer::Offsets;
 {
-  $Lingua::EN::Tokenizer::Offsets::VERSION = '0.01_01';
+  $Lingua::EN::Tokenizer::Offsets::VERSION = '0.01_02';
 }
 use utf8::all;
 use Data::Dump qw/dump/;
@@ -14,12 +14,20 @@ our @EXPORT_OK = qw/
 					token_offsets
 					adjust_offsets
 					get_tokens
+					tokenize
 				/;
 
 
 # ABSTRACT: Finds word (token) boundaries, and returns their offsets.
 
 
+
+
+sub tokenize {
+	my ($text) = @_;
+	my $tokens = get_tokens($text);
+	return join ' ',@$tokens;
+}
 
 
 
@@ -218,7 +226,7 @@ Lingua::EN::Tokenizer::Offsets - Finds word (token) boundaries, and returns thei
 
 =head1 VERSION
 
-version 0.01_01
+version 0.01_02
 
 =head1 SYNOPSIS
 
@@ -247,6 +255,10 @@ version 0.01_01
 
 =head1 METHODS
 
+=head2 tokenize($text)
+
+Takes text as input and returns a tokenized version (space-separated tokens).
+
 =head2 get_offsets($text)
 
 Takes text input and returns reference to array containin pairs of character
@@ -260,13 +272,13 @@ Takes text input and splits it into tokens.
 
 Minor adjusts to offsets (leading/trailing whitespace, etc)
 
-=head2 offsets2tokens($text,$offsets)
-
-Given a list of token boundaries offsets and a text, returns an array with the text split into tokens.
-
 =head2 initial_offsets($text)
 
 First naive delimitation of tokens.
+
+=head2 offsets2tokens($text,$offsets)
+
+Given a list of token boundaries offsets and a text, returns an array with the text split into tokens.
 
 =head1 ACKNOWLEDGEMENTS
 
