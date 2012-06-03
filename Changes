@@ -1,0 +1,23 @@
+Changelog for Lingua-EN-Tokenizer-Offsets
+
+0.01_01 2012-06-03T00:40:36
+ [André Santos <andrefs@cpan.org>]
+ - documentation
+
+ - first test
+
+ - lcb
+
+ - lcb
+
+ - lcb
+
+ - handling '.'
+
+ - fixed problems with patterns at the begining/end
+
+ - porting 'tokenize' function
+
+ - initial commit
+
+
