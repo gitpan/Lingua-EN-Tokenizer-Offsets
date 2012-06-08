@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker 6.30;
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "Finds word (token) boundaries, and returns their offsets.",
-  "AUTHOR" => "Andre Santos <andrefs\@cpan.org>",
+  "AUTHOR" => "Andr\303\251 Santos <andrefs\@cpan.org>",
   "BUILD_REQUIRES" => {
     "Test::Differences" => 0,
     "Test::More" => 0
@@ -31,7 +31,7 @@ my %WriteMakefileArgs = (
     "utf8::all" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.01_02",
+  "VERSION" => "0.01_03",
   "test" => {
     "TESTS" => "t/*.t"
   }

@@ -1,6 +1,11 @@
 Changelog for Lingua-EN-Tokenizer-Offsets
 
-0.01_02 2012-06-03T00:44:54
+0.01_03 2012-06-08T15:39:51
+ [André Santos <andrefs@cpan.org>]
+ - last commit bits
+
+
+v0.01_02 2012-06-03T00:44:37
  [André Santos <andrefs@cpan.org>]
  - added tokenize function
 

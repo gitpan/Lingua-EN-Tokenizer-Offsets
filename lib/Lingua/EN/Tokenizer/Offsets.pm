@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Lingua::EN::Tokenizer::Offsets;
 {
-  $Lingua::EN::Tokenizer::Offsets::VERSION = '0.01_02';
+  $Lingua::EN::Tokenizer::Offsets::VERSION = '0.01_03';
 }
 use utf8::all;
 use Data::Dump qw/dump/;
@@ -19,8 +19,6 @@ our @EXPORT_OK = qw/
 
 
 # ABSTRACT: Finds word (token) boundaries, and returns their offsets.
-
-
 
 
 sub tokenize {
@@ -53,6 +51,7 @@ sub get_tokens {
 
 sub adjust_offsets {
     my ($text,$offsets) = @_;
+	$text = $$text if ref($text);
     my $size = @$offsets;
     for(my $i=0; $i<$size; $i++){
         my $start  = $offsets->[$i][0];
@@ -79,6 +78,7 @@ sub adjust_offsets {
 
 sub initial_offsets {
 	my ($text) = @_;
+	$text = $$text if ref($text);
 	my $end;
 	my $text_end = length($text);
 	my $offsets = [[0,$text_end]];
@@ -150,6 +150,7 @@ sub _split_tokens {
 
 sub offsets2tokens {
     my ($text, $offsets) = @_;
+	$text = $$text if ref($text);
     my $tokens = [];
     foreach my $o ( sort {$a->[0] <=> $b->[0]} @$offsets) {
         my $start = $o->[0];
@@ -178,6 +179,7 @@ sub _load_prefixes {
 
 sub _nonbp {
     my ($text,$offsets) = @_;
+	$text = $$text if ref($text);
 	my $nonbpref = {};
 	_load_prefixes($nonbpref);
 	my $new_offsets = adjust_offsets($text,$offsets);
@@ -226,7 +228,7 @@ Lingua::EN::Tokenizer::Offsets - Finds word (token) boundaries, and returns thei
 
 =head1 VERSION
 
-version 0.01_02
+version 0.01_03
 
 =head1 SYNOPSIS
 
@@ -257,28 +259,41 @@ version 0.01_02
 
 =head2 tokenize($text)
 
-Takes text as input and returns a tokenized version (space-separated tokens).
+Returns a tokenized version of $text (space-separated tokens).
+
+$text can be a scalar or a scalar reference.
 
 =head2 get_offsets($text)
 
-Takes text input and returns reference to array containin pairs of character
-offsets, corresponding to the tokens start and end positions.
+Returns a reference to an array containin pairs of character
+offsets, corresponding to the start and end positions of tokens
+from $text.
+
+$text can be a scalar or a scalar reference.
 
 =head2 get_tokens($text)
 
-Takes text input and splits it into tokens.
+Splits $text it into tokens, returning an array reference.
+
+$text can be a scalar or a scalar reference.
 
 =head2 adjust_offsets($text,$offsets)
 
 Minor adjusts to offsets (leading/trailing whitespace, etc)
 
+$text can be a scalar or a scalar reference.
+
 =head2 initial_offsets($text)
 
 First naive delimitation of tokens.
 
+$text can be a scalar or a scalar reference.
+
 =head2 offsets2tokens($text,$offsets)
 
 Given a list of token boundaries offsets and a text, returns an array with the text split into tokens.
+
+$text can be a scalar or a scalar reference.
 
 =head1 ACKNOWLEDGEMENTS
 
@@ -290,7 +305,7 @@ L<Lingua::EN::Sentence::Offsets>, L<Lingua::FreeLing3::Tokenizer>
 
 =head1 AUTHOR
 
-Andre Santos <andrefs@cpan.org>
+André Santos <andrefs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
