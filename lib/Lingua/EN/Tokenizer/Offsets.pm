@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Lingua::EN::Tokenizer::Offsets;
 {
-  $Lingua::EN::Tokenizer::Offsets::VERSION = '0.01_03';
+  $Lingua::EN::Tokenizer::Offsets::VERSION = '0.03';
 }
 use utf8::all;
 use Data::Dump qw/dump/;
@@ -15,6 +15,7 @@ our @EXPORT_OK = qw/
 					adjust_offsets
 					get_tokens
 					tokenize
+					offsets2tokens
 				/;
 
 
@@ -206,6 +207,7 @@ sub _nonbp {
 					and $t =~ /^\d+/)
 			){
 				$s =~ /^(.*[^\s\.])\.\s*?$/;
+				next unless defined($+[1]);
 				push @$extra, [$start+$+[1],$end];
 				$new_offsets->[$i][1] = $start+$+[1];
 			}
@@ -216,7 +218,7 @@ sub _nonbp {
 			
 1;
 
-
+__END__
 
 =pod
 
@@ -228,7 +230,7 @@ Lingua::EN::Tokenizer::Offsets - Finds word (token) boundaries, and returns thei
 
 =head1 VERSION
 
-version 0.01_03
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -315,8 +317,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-
-
